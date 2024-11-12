@@ -1,62 +1,106 @@
-//1) Crie um banco de dados chamando "test"
-use("test")
+//use("Nome Banco")
+use("fecinavidb")
+db.dropDatabase("fecinavidb")
+use("fecinavidb")
 
-//2)Use o banco "test" e  crie uma coleção chamada "estudante"
-use("test")
-db.createCollection("estudante")
 
-//3)Use o banco "test" e na coleção "estudante" insira os valores:
-//nome = Tere, cpf=123123123,idade=28
-use("test")
-db.estudante.insertOne({
-    "nome":"Tere",
-    "cpf":"123123123",
-    "idade":28
-})
-
-//4) Use o banco "test" e na coleção "estudante" 
-//insira 3 registros com um único comando:
-use("test")
-db.estudante.insertMany([
+db.createCollection("trabalhos");
+db.trabalhos.insertMany([
     {
-        "nome":"Maria",
-        "cpf":"123123123",
-        "idade":18
+    título: "Cyberbullying no IFMS",
+    área: "humanas",
+    autores:[
+        {
+            nome: "Clara",
+            email: "clara.larsen@estudante.ifms.edu.br",
+        },
+    ],
+    dataEnvio: "10/08/2024",
+    avaliadores:[
+    {
+          cpf:"08637875173",
+          nome: "Gabriela",
+          nota: "8",
     },
+    ],
+    mediaAvaliacoes:"8"
+ },
+ {
+    título: "bliblioteca autonôma",
+    área: "humanas",
+    autores:[
+        {
+            nome: "Katiely",
+            email: "Katiely.santos@estudante.ifms.edu.br",
+        },
+    ],
+    dataEnvio: "05/07/2024",
+    avaliadores:[
     {
-        "nome":"Tomazini",
-        "cpf":"123123123",
-        "idade":17
+          cpf:"03893310150",
+          nome: "Edy",
+          nota: "10",
     },
+    ],
+    mediaAvaliacoes: "10"
+ },
+ {
+    título: "Mulheres em ação",
+    área: "humanas",
+    autores:[
+        {
+            nome: "Nicolle",
+            email: "Nicolle.ferreira@estudante.ifms.edu.br",
+        },
+    ],
+    dataEnvio: "09/08/2023",
+    avaliadores:[
     {
-        "nome":"Lays",
-        "cpf":"123123123",
-        "idade":16
-    }
+          cpf:"07003553163",
+          nome: "Jozil",
+          nota: "10",
+    },
+    ],
+    mediaAvaliacoes:"10"
+ },
+ {
+    título: "Filmes para o aprendizado",
+    área: "humanas",
+    autores:[
+        {
+            nome: "Narriane",
+            email: "Narriane.aparecida@estudante.ifms.edu.br",
+        },
+    ],
+    dataEnvio: "20/08/2024",
+    avaliadores:[
+    {
+          cpf:"08655575180",
+          nome: "Tenani",
+          nota: "9",
+    },
+    ],
+    mediaAvaliacoes: "9"
+ },
 ])
-
-//5) Utilizando o banco test Liste todos os resgistros contidos na coleção estudante.
-use("test")
-db.estudante.find({})
-
-//6) Utilizando o banco test liste todos os registros da coleção estudante
-// Onde o nome for igual a "Tere"
-use("test")
-db.estudante.find({"nome":"Tere"})
-
-//7) Utilizando o banco test liste todos os registros da coleção estudante
-// Onde a idade for maior ou igual a "17"
-use("test")
-db.estudante.find({"idade":{$gte:17}})
-//8) Utilizando o banco test liste todos os registros da coleção estudante
-// onde a idade for maior que 17 e menor ou igual a 18 e o nome for diferente de "maria"
-// Mostre apenas os campos Nome e Idade na resposta.
-use("test")
-db.estudante.find(
-{
-    $and:[
-        {"idade":{$gt:17,$lte:18}},
-        {"nome":{$ne:"Maria"}}
-    ]
-},
-{"nome":1,"idade":1,"_id":0})
+db.trabalhos.insertOne({
+    título: "Plantas Medicinais",
+    área: "Biológicas",
+    autores:[
+        {
+            nome: "Ana Luiza",
+            email: "Ana.silva@estudante.ifms.edu.br",
+        },
+    ],
+    dataEnvio: "30/09/2024",
+    avaliadores:[
+    {
+          cpf:"08658575190",
+          nome: "Terenciani",
+          nota: "7",
+    },
+    ],
+    mediaAvaliacoes: "7"
+})
+db.trabalhos.find({area: "Biológicas"}).pretty()
+db.trabalhos.find().pretty()
